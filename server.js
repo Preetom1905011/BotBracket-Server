@@ -10,6 +10,8 @@ const tournamentRoutes = require("./routes/tournaments");
 const selectedTMRoutes = require("./routes/selectedTM");
 const userRoutes = require("./routes/user");
 
+const PORT = process.env.PORT || 4000;
+
 // express app
 const app = express();
 
@@ -34,8 +36,8 @@ mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
     // listen for requests
-    app.listen(process.env.PORT || 4000, () => {
-      console.log("connect to db & listening on port", process.env.PORT);
+    app.listen(PORT, () => {
+      console.log("connect to db & listening on port", PORT);
     });
   })
   .catch((error) => {

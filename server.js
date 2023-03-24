@@ -25,6 +25,9 @@ app.use((req, res, next) => {
 });
 
 // routes
+app.get("/api/", (req, res) => {
+    res.status(200).json({message: "it's working"})
+})
 app.use("/api/participants", botRoutes);
 app.use("/api/matches", matchRoutes);
 app.use("/api/tournaments", tournamentRoutes);

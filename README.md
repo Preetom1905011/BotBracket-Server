@@ -24,6 +24,6 @@ so DON'T FORGET YOUR PASSWORD!
 
 ## Note
 - To select winner, press on the toggle "Winner" button, not the Match Cards.
-- If you want to reset the match, DO NOT PRESS "END MATCH". END MATCH button will add the match to the match history
+- If you want to reset the match and start over, DO NOT PRESS "END MATCH". END MATCH button will add the match to the match history
   and all your rankings will go wack. Press the RESET button on the timer instead.
 - That's it :]

@@ -10,7 +10,8 @@ const tournamentSchema = new Schema(
     name: { type: String, required: true },
     participantIDs: [{type: mongoose.Schema.Types.ObjectId, ref: 'Bot'}],
     matchIDs: [{type: mongoose.Schema.Types.ObjectId, ref: 'Match'}],
-    user_id: { type: String, required: true}
+    user_id: { type: String, required: true},
+    public: {type: Boolean, default: false}
   },
   { timestamps: true }
 );

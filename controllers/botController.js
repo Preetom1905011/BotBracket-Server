@@ -4,6 +4,9 @@ const mongoose = require('mongoose')
 // get all participants
 const getBots = async (req, res) => {
     const user_id = req.user._id
+
+    console.log(req.params)
+
     const bots = await Bot.find({user_id}).sort({chip: -1})
 
     res.status(200).json(bots)
@@ -100,11 +103,22 @@ const deleteMultipleBots = async (req, res) => {
 
 }
 
+// for Viewer only
+const getBotsNoAuth = async (req, res) => {
+    const {id: user_id} = req.params
+
+    const bots = await Bot.find({user_id}).sort({chip: -1})
+
+    res.status(200).json(bots)
+}
+
+
 module.exports = {
     getBots,
     getOneBot,
     addBot,
     deleteBot,
     updateBot,
-    deleteMultipleBots
+    deleteMultipleBots,
+    getBotsNoAuth
 }

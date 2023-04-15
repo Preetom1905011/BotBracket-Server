@@ -1,11 +1,13 @@
 const Tournament = require('../models/tournamentModel')
+const Bot = require('../models/botModel')
+const Match = require('../models/matchModel')
 
 const mongoose = require('mongoose')
 
 // load tournament
 const loadTournament = async (req, res) => {
     const user_id = req.user._id
-    const tournament = await Tournament.find({user_id}, {name: 1}).sort({createdAt: -1})
+    const tournament = await Tournament.find({user_id}, {name: 1, public: 1}).sort({createdAt: -1})
 
     res.status(200).json(tournament)
 
@@ -174,6 +176,17 @@ const deleteTournament = async(req, res) => {
     res.status(200).json(tournament)
 }
 
+// For viewing only
+// load tournament
+const getPublicTournaments = async (req, res) => {
+    const {id: user_id} = req.params
+
+    const tournaments = await Tournament.find({user_id, public: true}, {name: 1}).sort({createdAt: -1}).populate("participantIDs matchIDs")
+
+    res.status(200).json(tournaments)
+
+}
+
 module.exports = {
     loadTournament,
     addTournament,
@@ -183,5 +196,6 @@ module.exports = {
     addMatch,
     getMatchesByTournament,
     editTournament,
-    deleteTournament
+    deleteTournament,
+    getPublicTournaments
 }

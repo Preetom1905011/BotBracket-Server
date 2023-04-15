@@ -9,7 +9,8 @@ const {
     addMatch,
     getMatchesByTournament,
     editTournament,
-    deleteTournament
+    deleteTournament,
+    getPublicTournaments
 } = require('../controllers/tournamentController')
 
 // require auth for all tournaments route
@@ -17,26 +18,30 @@ const requireAuth = require('../middleware/requireAuth')
 
 const router = express.Router()
 
-router.use(requireAuth)
+// router.use(requireAuth)
 
 // GET all tournaments
-router.get('/', loadTournament)
+router.get('/', requireAuth, loadTournament)
 // POST a new tournament
-router.post('/', addTournament)
+router.post('/', requireAuth, addTournament)
 // UPDATE a tournament
-router.patch('/:id', editTournament)
+router.patch('/:id', requireAuth, editTournament)
 // DELETE a tournament
-router.delete('/:id', deleteTournament)
+router.delete('/:id', requireAuth, deleteTournament)
 // POST a new participant to the tournament
-router.post('/bots/:id', addParticipant)
+router.post('/bots/:id', requireAuth, addParticipant)
 // GET participants by a tournament
-router.get('/bots/:id', getParticipantsByTournament)
+router.get('/bots/:id', requireAuth, getParticipantsByTournament)
 // DELETE participant by tournament
-router.delete('/bots/:id', deleteParticipantByTournament)
+router.delete('/bots/:id', requireAuth, deleteParticipantByTournament)
 // POST a new match to the tournament
-router.post('/matches/:id', addMatch)
+router.post('/matches/:id', requireAuth, addMatch)
 // GET participants by a tournament
-router.get('/matches/:id', getMatchesByTournament)
+router.get('/matches/:id', requireAuth, getMatchesByTournament)
+
+// For Viewing Only
+// GET public tournaments of users
+router.get('/User/:id', getPublicTournaments)
 
 
 module.exports = router

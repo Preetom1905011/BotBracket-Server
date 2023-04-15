@@ -3,7 +3,8 @@ const express = require('express')
 const {
     getMatches,
     addMatch,
-    deleteMultipleMatches
+    deleteMultipleMatches,
+    getMatchesNoAuth
 } = require('../controllers/matchController')
 
 // require auth for all tournaments route
@@ -11,14 +12,16 @@ const requireAuth = require('../middleware/requireAuth')
 
 const router = express.Router()
 
-router.use(requireAuth)
+// router.use(requireAuth)
 
+// GET all matches FOR VIEWING ONLY
+router.get('/User/:id', getMatchesNoAuth)
 // GET all matches
-router.get('/', getMatches)
+router.get('/', requireAuth, getMatches)
 // POST a new match
-router.post('/', addMatch)
+router.post('/', requireAuth, addMatch)
 // DELETE Multiple matches
-router.delete('/', deleteMultipleMatches)
+router.delete('/', requireAuth, deleteMultipleMatches)
 
 
 module.exports = router

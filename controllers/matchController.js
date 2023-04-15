@@ -50,8 +50,18 @@ const deleteMultipleMatches = async (req, res) => {
 
 }
 
+// for Viewer only
+const getMatchesNoAuth = async (req, res) => {
+    const {id: user_id} = req.params
+
+    const matches = await Match.find({user_id}).sort({createdAt: -1})
+
+    res.status(200).json(matches)
+}
+
 module.exports = {
     getMatches,
     addMatch,
-    deleteMultipleMatches
+    deleteMultipleMatches,
+    getMatchesNoAuth
 }

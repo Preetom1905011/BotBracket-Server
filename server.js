@@ -16,19 +16,13 @@ const PORT = process.env.PORT || 4000;
 const app = express();
 
 // middleware
-app.options('*', cors({
-  origin: process.env.BASE_URL,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
-}));
-// app.use(cors({
-//   origin: process.env.BASE_URL
-// }));
+app.use(cors());
 app.use(express.json());
 
 app.use((req, res, next) => {
   console.log(req.path, req.method);
+  res.header("Access-Control-Allow-Origin", "https://botbracketcrr.netlify.app");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   next();
 });
 

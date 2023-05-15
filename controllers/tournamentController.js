@@ -181,7 +181,7 @@ const deleteTournament = async(req, res) => {
 const getPublicTournaments = async (req, res) => {
     const {id: user_id} = req.params
 
-    const tournaments = await Tournament.find({user_id, public: true}, {name: 1}).sort({createdAt: -1}).populate("participantIDs matchIDs")
+    const tournaments = await Tournament.find({user_id, public: true}, {name: 1, createdAt: 1, user_id: 1}).sort({createdAt: -1}).populate("participantIDs matchIDs")
 
     res.status(200).json(tournaments)
 

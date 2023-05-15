@@ -41,4 +41,12 @@ const signupUser = async (req, res) => {
     }
 }
 
-module.exports = {signupUser, loginUser}
+// get all the user ids
+const getUsers = async (req, res) => {
+
+    const user = await User.find({}, {_id: 1, userName: 1}).sort({createdAt: -1})
+    res.status(200).json(user)
+}
+
+
+module.exports = {signupUser, loginUser, getUsers}

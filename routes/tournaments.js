@@ -41,7 +41,7 @@ router.get('/matches/:id', requireAuth, getMatchesByTournament)
 
 // For Viewing Only
 // GET public tournaments of users
-router.get('/User/:id', getPublicTournaments)
+router.get('/Users/:id', getPublicTournaments)
 
 
 module.exports = router

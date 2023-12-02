@@ -21,7 +21,7 @@ app.use(express.json());
 
 app.use((req, res, next) => {
   console.log(req.path, req.method);
-  res.header("Access-Control-Allow-Origin", "https://botbracketcrr.netlify.app");
+  res.header("Access-Control-Allow-Origin", process.env.BASE_URL);
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   next();
 });
